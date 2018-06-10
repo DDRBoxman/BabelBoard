@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		678B212F20CB557E00DBA553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678B212E20CB557E00DBA553 /* AppDelegate.swift */; };
+		678B213120CB557E00DBA553 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678B213020CB557E00DBA553 /* ViewController.swift */; };
+		678B213320CB557F00DBA553 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678B213220CB557F00DBA553 /* Assets.xcassets */; };
+		678B213620CB557F00DBA553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678B213420CB557F00DBA553 /* Main.storyboard */; };
+		678B214020CB5B1000DBA553 /* SwiftSocket.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 678B213F20CB5B1000DBA553 /* SwiftSocket.framework */; };
+		678B214120CB5CA600DBA553 /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678B213F20CB5B1000DBA553 /* SwiftSocket.framework */; };
+		678B214220CB5CA600DBA553 /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 678B213F20CB5B1000DBA553 /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		678B214820CCAE9700DBA553 /* Bitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678B214520CCAE9700DBA553 /* Bitter.swift */; };
+		678B214920CCAE9700DBA553 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 678B214720CCAE9700DBA553 /* Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		678B213E20CB5AEC00DBA553 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				678B214020CB5B1000DBA553 /* SwiftSocket.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		678B214320CB5CA600DBA553 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				678B214220CB5CA600DBA553 /* SwiftSocket.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		678B212B20CB557E00DBA553 /* ParticleMouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParticleMouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		678B212E20CB557E00DBA553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		678B213020CB557E00DBA553 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		678B213220CB557F00DBA553 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		678B213520CB557F00DBA553 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		678B213720CB557F00DBA553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		678B213820CB557F00DBA553 /* ParticleMouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ParticleMouse.entitlements; sourceTree = "<group>"; };
+		678B213F20CB5B1000DBA553 /* SwiftSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSocket.framework; path = Carthage/Build/Mac/SwiftSocket.framework; sourceTree = "<group>"; };
+		678B214520CCAE9700DBA553 /* Bitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitter.swift; sourceTree = "<group>"; };
+		678B214620CCAE9700DBA553 /* Bitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitter.h; sourceTree = "<group>"; };
+		678B214720CCAE9700DBA553 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		678B212820CB557E00DBA553 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678B214120CB5CA600DBA553 /* SwiftSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		678B212220CB557E00DBA553 = {
+			isa = PBXGroup;
+			children = (
+				678B214420CCAE9700DBA553 /* Bitter */,
+				678B213F20CB5B1000DBA553 /* SwiftSocket.framework */,
+				678B212D20CB557E00DBA553 /* ParticleMouse */,
+				678B212C20CB557E00DBA553 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		678B212C20CB557E00DBA553 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				678B212B20CB557E00DBA553 /* ParticleMouse.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		678B212D20CB557E00DBA553 /* ParticleMouse */ = {
+			isa = PBXGroup;
+			children = (
+				678B212E20CB557E00DBA553 /* AppDelegate.swift */,
+				678B213020CB557E00DBA553 /* ViewController.swift */,
+				678B213220CB557F00DBA553 /* Assets.xcassets */,
+				678B213420CB557F00DBA553 /* Main.storyboard */,
+				678B213720CB557F00DBA553 /* Info.plist */,
+				678B213820CB557F00DBA553 /* ParticleMouse.entitlements */,
+			);
+			path = ParticleMouse;
+			sourceTree = "<group>";
+		};
+		678B214420CCAE9700DBA553 /* Bitter */ = {
+			isa = PBXGroup;
+			children = (
+				678B214520CCAE9700DBA553 /* Bitter.swift */,
+				678B214620CCAE9700DBA553 /* Bitter.h */,
+				678B214720CCAE9700DBA553 /* Info.plist */,
+			);
+			path = Bitter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		678B212A20CB557E00DBA553 /* ParticleMouse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 678B213B20CB557F00DBA553 /* Build configuration list for PBXNativeTarget "ParticleMouse" */;
+			buildPhases = (
+				678B212720CB557E00DBA553 /* Sources */,
+				678B212820CB557E00DBA553 /* Frameworks */,
+				678B212920CB557E00DBA553 /* Resources */,
+				678B213E20CB5AEC00DBA553 /* CopyFiles */,
+				678B214320CB5CA600DBA553 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParticleMouse;
+			productName = ParticleMouse;
+			productReference = 678B212B20CB557E00DBA553 /* ParticleMouse.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		678B212320CB557E00DBA553 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Recursive Penguin";
+				TargetAttributes = {
+					678B212A20CB557E00DBA553 = {
+						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 678B212620CB557E00DBA553 /* Build configuration list for PBXProject "ParticleMouse" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 678B212220CB557E00DBA553;
+			productRefGroup = 678B212C20CB557E00DBA553 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				678B212A20CB557E00DBA553 /* ParticleMouse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		678B212920CB557E00DBA553 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678B213320CB557F00DBA553 /* Assets.xcassets in Resources */,
+				678B213620CB557F00DBA553 /* Main.storyboard in Resources */,
+				678B214920CCAE9700DBA553 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		678B212720CB557E00DBA553 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678B213120CB557E00DBA553 /* ViewController.swift in Sources */,
+				678B212F20CB557E00DBA553 /* AppDelegate.swift in Sources */,
+				678B214820CCAE9700DBA553 /* Bitter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		678B213420CB557F00DBA553 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				678B213520CB557F00DBA553 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		678B213920CB557F00DBA553 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		678B213A20CB557F00DBA553 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		678B213C20CB557F00DBA553 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = ParticleMouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.recursivepenguin.ParticleMouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		678B213D20CB557F00DBA553 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = ParticleMouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.recursivepenguin.ParticleMouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		678B212620CB557E00DBA553 /* Build configuration list for PBXProject "ParticleMouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				678B213920CB557F00DBA553 /* Debug */,
+				678B213A20CB557F00DBA553 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		678B213B20CB557F00DBA553 /* Build configuration list for PBXNativeTarget "ParticleMouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				678B213C20CB557F00DBA553 /* Debug */,
+				678B213D20CB557F00DBA553 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 678B212320CB557E00DBA553 /* Project object */;
+}
