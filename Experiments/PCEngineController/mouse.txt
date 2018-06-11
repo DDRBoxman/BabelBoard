@@ -1,0 +1,236 @@
+Date: Wed, 29 Apr 1998 02:22:00 -0400 (EDT)
+To: tghack-list@joyce.eng.yale.edu
+From: David Shadoff <daves@interlog.com>
+X-Software: mlf2 v2.46/anti-land-MIME, Copyright 1995-1998 by Bt
+X-Original-Id: <3.0.2.32.19980429021917.00686690@mail.interlog.com>
+X-Server-Address: tghack-list-request@joyce.eng.yale.edu
+Subject: PCE Mouse Information
+
+Hi Folks...
+
+This post is about how the PCE Mouse works, and sends its information back
+to the PC-Engine.  David Michel helped out a lot on this one by finding the
+mouse driver code, and I've finally had a chance to run a test on real
+hardware.
+
+To the hardware folks out there - it's not so difficult a protocol; perhaps
+somebody will be able to hack up a MAX-232 and a PIC microcontroller (or
+some such) to convert a $5 PC mouse into a mouse for the PC-Engine.    =)
+
+If you do, please post your findings (I don't know anything about the
+serial protocol for PC mice...).
+
+First a quick refresher on the joystick workings:
+to read a series of joysticks:
+- write #$1 to $1000 (set 'strobe' high on joystick port)
+- write #$3 to $1000 (keep 'strobe' high; bring 'reset' high)
+- write #$1 to $1000 (bring 'reset' low, to reset joystick counter to pad #1)
+- read from $1000    (read port)
+- shift left 4 times (only 4 bits useful; first 4 bits are left/right/up/down)
+- write #$0 to $1000 (set 'strobe' low to toggle joypad nybbles)
+- read from $1000    (read port)
+- and #$0F           (only 4 bits useful - mask others)
+- 'or' with previous result  (make an entire byte)
+Joystick #2 now...
+- write #$1 to $1000 (set 'strobe' high, to advance joypad counter to #2...)
+- etc.
+
+This sequence generally happens about once every VSYNC (60 times per
+second), in order to stay responsive.
+
+Now, for the hardware folks out there, the 'reset' line is only high for
+about 3 cycles (@ 7.16 MHz ~= 420ns), and the delay between writing the
+port and reading the port is about 9 cycles (@ 7.16MHz ~= 1260ns), so keep
+those timings in mind.  Discreet gates were originally used, but they were
+pretty slow by today's standards.
+
+To summarize the mouse's workings, here are a few facts:
+
+- The mouse must be either plugged in directly to the machine, or plugged
+into the PCE tap on the first joystick port.
+- The mouse is read 4 successive times, in order to assemble the mouse data
+(horiz most-significant-nybble/horiz LSN/vert MSN/vert LSN).
+- values are deltas, and reading the mouse every VSYNC is normal
+- For vertical movement, up is positive, down is negative
+- For horizontal movement, left is positive, right is negative
+- I was not able to yield a delta value greater than 0x25 (hexadecimal)
+during a 1-VSYNC interval  (I didn't try all *that* hard though).  This
+should give you an idea of the sensitivity.
+
+Note: I expect that the mouse's microcontroller will recover from an
+incomplete read (ie. not 4 quick-succesion reads to assemble 2 bytes).
+This would mean that it could recognize a pause (of roughly 1/60th sec),
+and reset to the first nybble of the sequence.  Or maybe it self-resets
+during the longer-than-normal delay during the first read of the cycle
+(33us pause instead of 1.25us).
+
+Truth is, the comments in the source code tell the whole story beyond this
+point.  Let me know if there are any questions or additions.
+
+Here's the annotated source code:
+
+;
+;  PCE mouse driver source
+;
+
+msreset	=	$E000	; reset machine
+ex_vsync	=	$E07B	; wait for vsync
+
+	.rsset $2000		; Just an example address
+jycurr:	.rs 5
+jydlta:	.rs 5
+jyprev:	.rs 5
+
+msvert:	.rs 1
+mshorz:	.rs 1
+
+;
+; read the mouse
+; however, this may actually be 'detect and intialize mouse'
+;
+mousinit:
+	lda   #$20	; set #$20 bit of $F5 - probably a resource-usage flag
+	tsb   $F5	; indicating that mouse/joystick is being read
+
+	stz   jycurr	; clear joypad memory area
+	tii   jycurr, jycurr+1, $0018
+
+	cla		; counter of 'good' reads (where vertical == 0)
+	ldx   #$0A	; try 10 iterations
+ms_a:	pha
+	phx
+	jsr   ex_vsync	; wait for vsync
+	jsr   mousread	; read mouse
+	plx
+	pla
+	ldy   msvert	; read mouse vertical axis movement
+	bne   ms_b	; if (val == 0), inc counter
+	inc   a
+ms_b:	dex
+	bne   ms_a	; next iteration
+
+	cmp   #$00	; if #$00 value not found even once (out of 10 times)
+	bne   ms_c	; then return(1)
+
+	lda   #$20	; reset #$20 bit of $F5
+	trb   $F5
+	cla		; probably 'good' return code
+	rts
+
+ms_c:	lda   #$01	; probably 'bad' return code
+	rts		; (resource-in-use flag is still set)
+
+;
+; actual mechanics of reading mouse
+;
+mousread:
+	ldx   #$04		; # iterations (actually 5)
+ms_1a:	lda   jycurr,X	; copy 'current' value to 'previous' value
+	sta   jyprev,X
+	dex
+	bpl   ms_1a
+
+	stz   jycurr	; initialize joypad #1's value
+
+	lda   #$01	; reset joypad port# to joystick #1
+	sta   $1000
+	lda   #$03
+	sta   $1000
+	lda   #$01
+	sta   $1000
+
+	cla		; timing loop
+ms_1b:	pha		; total duration = 240 cycles (33.5 usec)
+	pla
+	nop
+	sxy
+	inc   a
+	cmp   #$0C
+	bcc   ms_1b
+
+	lda   $1000	; read joystick port
+	asl   a	; upper nybble of 8-bit value - shift it
+	asl   a
+	asl   a
+	asl   a
+	sta   mshorz	; store it
+	jsr   msbutt	; read buttons (toggle port/read other nybble)
+
+	lda   #$01	; reset joystick port again (to stick #1)
+	sta   $1000
+	lda   #$03
+	sta   $1000
+	lda   #$01
+	sta   $1000
+
+	pha		; wait 9 cycles (1.25 usec)
+	pla
+	nop
+
+	lda   $1000	; read port
+	and   #$0F	; lower nybble of 8-bit value
+	tsb   mshorz	; 'or' it into memory
+	bsr   msbutt	; read buttons (toggle port/read other nybble)
+
+	lda   #$01	; reset joystick port again
+	sta   $1000
+	lda   #$03
+	sta   $1000
+	lda   #$01
+	sta   $1000
+
+	pha		; wait 9 cycles (1.25 usec)
+	pla
+	nop
+
+	lda   $1000	; read port
+	asl   a	; upper nybble of 8-bit value - shift it
+	asl   a
+	asl   a
+	asl   a
+	sta   msvert
+	bsr   msbutt	; read buttons (toggle port/read other nybble)
+
+	lda   #$01	; reset joystick port again
+	sta   $1000
+	lda   #$03
+	sta   $1000
+	lda   #$01
+	sta   $1000
+
+	pha		; wait 9 cycles (1.25 usec)
+	pla
+	nop
+
+	lda   $1000	; read port
+	and   #$0F	; lower nybble of 8-bit value
+	tsb   msvert	; 'or' it into value
+	bsr   msbutt	; read buttons (toggle port/read other nybble)
+
+	lda   jydlta	; check joystick buttons
+	cmp   #$04	; is 'select' newly-pressed ?
+	bne   ms_1c
+	lda   jycurr	; if so, are both run & select pressed ?
+	cmp   #$0C
+	bne   ms_1c
+	jmp   msreset	; if yes, reboot
+ms_1c:	rts		; else return
+
+msbutt:
+	stz   $1000	; toggle joystick port to read buttons
+	pha		; wait 9 cycles (1.25 usec)
+	pla
+	nop
+	lda   $1000	; read value
+	eor   #$FF	; change low-active to high-active
+	and   #$0F	; only 4 bits
+	tsb   jycurr	; 'or' it into value
+
+	ora   jyprev	; determine 'newly-pressed' buttons
+	eor   jyprev
+	sta   jydlta	; put them into 'delta'
+	rts
+
+- Dave
+
+
